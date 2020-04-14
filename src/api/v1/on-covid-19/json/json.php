@@ -185,7 +185,7 @@ else{
   
     // tell the user no estimation available
     echo json_encode(
-        array("whoospie!" => "Could not get covid-19 estimate in JSON")
+        array("whoopsie!" => "Could not get covid-19 estimate in JSON")
     );
 
 }

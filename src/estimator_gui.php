@@ -11,7 +11,7 @@
 </head>
 
 <?php
-include_once "estimator4.php";
+include_once "estimator.php";
 
 $estimate = new Covid19Estimator();
 

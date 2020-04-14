@@ -11,7 +11,7 @@
 </head>
 
 <?php
-include_once "estimator4.php";
+include_once "estimator.php";
 
 $estimate = new Covid19Estimator();
 
@@ -67,9 +67,6 @@ function callAPI($method, $url, $data){
 }
 
 
-
-
-
 //encode xml
 function xml_encode($mixed, $domElement=null, $DOMDocument=null) {
     if (is_null($DOMDocument)) {
@@ -121,7 +118,6 @@ if(isset($_POST['apiCall'])){
   switch ($apiType) {
     case 'JSON':
 
-    
      $data_array = $estimate->covid19ImpactEstimator($estimate);
      $make_call = callAPI('POST', 'http://localhost/c19/src/api/v1/on-covid-19/json/json.php', json_encode($data_array));
 
@@ -153,9 +149,6 @@ else {
   //echo "could not connect to API";
 }
 ?>
-
-
-
 
 
 <body>

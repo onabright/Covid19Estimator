@@ -119,10 +119,10 @@ if(isset($_POST['apiCall'])){
     case 'JSON':
 
      $data_array = $estimate->covid19ImpactEstimator($estimate);
-     $make_call = callAPI('POST', 'http://localhost/c19/src/api/v1/on-covid-19/json/json.php', json_encode($data_array));
+     $make_call = callAPI('POST', 'http://35.225.33.89/covid19estimator/src/api/v1/on-covid-19/json/json.php', json_encode($data_array));
 
       $response = json_decode($make_call, true);
-      header("Location:http://localhost/c19/src/api/v1/on-covid-19/json/json.php");
+      header("Location:http://35.225.33.89/covid19estimator/src/api/v1/on-covid-19/json/json.php");
       //$errors   = $response['response']['errors'];
       //$data     = $response['response']['data'][0];
 
@@ -130,10 +130,10 @@ if(isset($_POST['apiCall'])){
       case 'XML':
 
       $data_array = (array) $estimate->covid19ImpactEstimator($estimate);
-      $make_call = callAPI('POST', 'http://localhost/c19/src/api/v1/on-covid-19/xml/xml.php',
+      $make_call = callAPI('POST', 'http://35.225.33.89/covid19estimator/src/api/v1/on-covid-19/json/json.php',
        json_encode($data_array));
       $response = json_decode($make_call, true);
-      header("Location:http://localhost/c19/src/api/v1/on-covid-19/xml/xml.php");
+      header("Location:http://35.225.33.89/covid19estimator/src/api/v1/on-covid-19/json/json.php");
       break;
     
   }

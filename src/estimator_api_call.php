@@ -126,6 +126,9 @@ if(isset($_POST['apiCall'])){
       //$errors   = $response['response']['errors'];
       //$data     = $response['response']['data'][0];
 
+      echo"<div class='container alert alert-success alert-dismissible'>";
+      echo "<br><br>";
+
       break;
       case 'XML':
 
@@ -134,6 +137,9 @@ if(isset($_POST['apiCall'])){
        json_encode($data_array));
       $response = json_decode($make_call, true);
       header("Location:http://35.225.33.89/covid19estimator/src/api/v1/on-covid-19/xml/xml.php");
+      
+      echo"<div class='container alert alert-success alert-dismissible'>";
+      echo "<br><br>";
       break;
     
   }

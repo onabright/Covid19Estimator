@@ -135,17 +135,28 @@ return $data;
 
 //impact estimation
 function covid19ImpactEstimator($data){
+	$impact = (array) $this->impact($data);
+	$severeImpact = (array) $this->severeImpact($data);
+	
+/*
+data: input,
+impact: {},
+severeImpact {}
+*/
 
-	$impact = (array) $data->impact($data);
-	//echo json_encode($impact);
-	echo str_replace('\\u0000', "", json_encode($impact));
-	$severeImpact = (array) $data->severeImpact($data);
-	echo str_replace('\\u0000', "", json_encode($severeImpact));
-	//echo json_encode($severeImpact);
+return $data = array(
+	"data" => array(
+		"input" => $data,
+	),
 
-return $data;
-
-	}
+	"estimate" => array(
+		"impact" => $impact,
+		"severeImpact" => $severeImpact
+	),
+  
+ );
+		
+ }
 
 }
 

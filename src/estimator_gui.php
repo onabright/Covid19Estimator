@@ -33,10 +33,14 @@ $estimate->totalHospitalBeds = $_POST['totalHospitalBeds'];
 
 
 	
-	echo"<div class='container alert alert-success alert-dismissible'>";
-	echo "<br><br><br>";
-	json_encode($estimate->estimates = (array) $estimate->covid19ImpactEstimator($estimate));
-	echo"</div>";
+echo"<div class='container alert alert-success alert-dismissible'>";
+echo "<br><br>";
+
+//json_encode($estimate->estimates = (array) $estimate->covid19ImpactEstimator($estimate));
+  $json = json_encode($estimate->covid19ImpactEstimator($estimate));
+  echo $json;
+echo"</div>";
+
 
 
 

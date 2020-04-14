@@ -106,7 +106,6 @@ function dollarsInFlight($infectionsByRequestedTime, $avgDailyIncomeInUSD, $time
 
 //impact estimator
 function impact($data){
-	
 	$data->currentlyInfected($data->reportedCases);
 	$data->infectionsByRequestedTime($data->currentlyInfected, $data->timeToElapse, $data->periodType);
 	$data->severeCasesByRequestedTime($data->infectionsByRequestedTime);
@@ -119,7 +118,6 @@ return $data;
 
 //severe impact estimator
  function severeImpact($data){
-
 	$data->currentlyInfected($data->reportedCases*50);
 	$data->infectionsByRequestedTime($data->currentlyInfected, $data->timeToElapse, $data->periodType);
 	$data->severeCasesByRequestedTime($data->infectionsByRequestedTime);
@@ -129,6 +127,7 @@ return $data;
 	$data->dollarsInFlight($data->infectionsByRequestedTime, $data->avgDailyIncomeInUSD, $data->timeToElapse);
 return $data;
 }
+
 
 
 //impact estimation
@@ -181,8 +180,9 @@ $estimate->totalHospitalBeds = $_GET['totalHospitalBeds'];
 
 //$estimate->estimates = (array) $estimate->covid19ImpactEstimator($estimate);
 //echo json_encode($estimate->estimates = (array) $estimate->covid19ImpactEstimator($estimate));
- $estimate->estimates = (array) $estimate->covid19ImpactEstimator($estimate);
-
+ //$estimate->estimates = (array) $estimate->covid19ImpactEstimator($estimate);
+ $json =json_encode($estimate->covid19ImpactEstimator($estimate));
+ echo $json;
 
 
 //$jsonData = json_encode($data);
@@ -196,7 +196,7 @@ else{
   
     // tell the user no estimation available
     echo json_encode(
-        array("whoopsie!" => "Could not get covid-19 estimate in JSON")
+        array("whoospie!" => "Could not get covid-19 estimate in JSON")
     );
 
 }
@@ -224,6 +224,8 @@ else{
     );
 }
 */
+
+
 
 ?>
 

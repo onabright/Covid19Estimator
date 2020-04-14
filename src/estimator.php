@@ -126,7 +126,6 @@ return $data;
 function covid19ImpactEstimator($data){
 	$impact = (array) $data->impact($data);
 	$severeImpact = (array) $data->severeImpact($data);
-	
 /*
 data: input,
 impact: {},
@@ -135,12 +134,12 @@ severeImpact {}
 
 return $data = array(
 	"data" => array(
-		"input" => $data,
+	"input" => $data,
 	),
 
 	"estimate" => array(
-		"impact" => $impact,
-		"severeImpact" => $severeImpact
+	"impact" => $impact,
+	"severeImpact" => $severeImpact
 	),
   
  );

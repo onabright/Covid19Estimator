@@ -130,10 +130,10 @@ if(isset($_POST['apiCall'])){
       case 'XML':
 
       $data_array = (array) $estimate->covid19ImpactEstimator($estimate);
-      $make_call = callAPI('POST', 'http://35.225.33.89/covid19estimator/src/api/v1/on-covid-19/json/json.php',
+      $make_call = callAPI('POST', 'http://35.225.33.89/covid19estimator/src/api/v1/on-covid-19/xml/xml.php',
        json_encode($data_array));
       $response = json_decode($make_call, true);
-      header("Location:http://35.225.33.89/covid19estimator/src/api/v1/on-covid-19/json/json.php");
+      header("Location:http://35.225.33.89/covid19estimator/src/api/v1/on-covid-19/xml/xml.php");
       break;
     
   }

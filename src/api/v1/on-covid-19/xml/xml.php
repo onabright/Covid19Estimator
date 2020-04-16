@@ -16,13 +16,13 @@ public $totalHospitalBeds;
 
 
 //estimators
-public $currentlyInfected;
-public $infectionsByRequestedTime;
-public $severeCasesByRequestedTime;
-public $hospitalBedsByRequestedTime;
-public $casesForICUByRequestedTime;
-public $casesForVentilatorsByRequestedTime;
-public $dollarsInFlight;
+protected $currentlyInfected;
+protected $infectionsByRequestedTime;
+protected $severeCasesByRequestedTime;
+protected $hospitalBedsByRequestedTime;
+protected $casesForICUByRequestedTime;
+protected $casesForVentilatorsByRequestedTime;
+protected $dollarsInFlight;
 
 
 
@@ -135,14 +135,8 @@ return $data;
 
 //impact estimation
 function covid19ImpactEstimator($data){
-	$impact = $this->impact($data);
-	$severeImpact = $this->severeImpact($data);
-	
-/*
-data: input,
-impact: {},
-severeImpact {}
-*/
+	$impact =  $data->impact($data);
+	$severeImpact =  $data->severeImpact($data);
 
 return $data = array(
 	"data" => array(
@@ -155,8 +149,8 @@ return $data = array(
 	),
   
  );
-		
- }
+
+	}
 
 }
 

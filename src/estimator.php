@@ -14,13 +14,13 @@ public $population;
 public $totalHospitalBeds;
 
 //estimators
-protected $currentlyInfected;
-protected $infectionsByRequestedTime;
-protected $severeCasesByRequestedTime;
-protected $hospitalBedsByRequestedTime;
-protected $casesForICUByRequestedTime;
-protected $casesForVentilatorsByRequestedTime;
-protected $dollarsInFlight;
+public $currentlyInfected;
+public $infectionsByRequestedTime;
+public $severeCasesByRequestedTime;
+public $hospitalBedsByRequestedTime;
+public $casesForICUByRequestedTime;
+public $casesForVentilatorsByRequestedTime;
+public $dollarsInFlight;
 
 
 /************

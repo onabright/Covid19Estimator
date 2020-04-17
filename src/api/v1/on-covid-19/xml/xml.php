@@ -208,6 +208,9 @@ function xml_encode($mixed, $domElement=null, $DOMDocument=null) {
 
 $estimate = new Covid19Estimator();
 
+//start counting http response time
+usleep(mt_rand(100, 10000));
+
 if($_GET){
 $estimate->name = $_GET['name'];
 $estimate->avgAge = $_GET['avgAge'];
@@ -227,6 +230,40 @@ $estimate->totalHospitalBeds = $_GET['totalHospitalBeds'];
 
 $xmlData = xml_encode($estimate->covid19ImpactEstimator($estimate));
 echo $xmlData;
+
+
+//set the log date
+ $logDate = date('d-m-Y H:i:s');
+
+ //get the http response code
+ $HTTPStatus = http_response_code();
+
+ //calculate the http request/response time
+ $getMicroTime = microtime(true) - $_SERVER['REQUEST_TIME_FLOAT'];
+ $round = round($getMicroTime, 3);
+ $getMinute = (int) $round;
+ $responseTime = $round - $getMinute . " ms";
+
+ //store the log as an array
+ $apiCallDetails = array(
+		 "Time Stamp" => $logDate,
+		 "HTTP Method" => $_SERVER['REQUEST_METHOD'],
+		 "Request URI" => dirname($_SERVER['SCRIPT_NAME']), //hide the file name json.php
+		 //"HTTP Status" => $_SERVER['REDIRECT_STATUS'],
+		 "HTTP Status" => $HTTPStatus,
+		 "Remote Address" => $_SERVER['REMOTE_ADDR'],
+		 "Response Time" => $responseTime
+ 
+);
+
+//convert the array into a string and format each entry per line
+$apiCallToString = implode("\t", $apiCallDetails) ."\n";
+$logAPICall = print_r($apiCallToString, true);
+
+//write the request log to the log file
+$logPath =  $_SERVER['DOCUMENT_ROOT'] . '/covid19estimator/src/api/v1/on-covid-19/logs/requests.txt';
+//$writeToLog = file_put_contents('log.txt', $logAPICall, FILE_APPEND);
+$writeToLog = file_put_contents($logPath, $logAPICall, FILE_APPEND);
 
 }
 

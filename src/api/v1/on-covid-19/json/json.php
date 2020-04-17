@@ -163,6 +163,10 @@ return $data = array(
 $estimate = new Covid19Estimator();
 
 if($_GET){
+
+//start counting http response time
+usleep(mt_rand(100, 10000));
+
 $estimate->name = $_GET['name'];
 $estimate->avgAge = $_GET['avgAge'];
 $estimate->avgDailyIncomeInUSD = $_GET['avgDailyIncomeInUSD'];
@@ -175,7 +179,9 @@ $estimate->totalHospitalBeds = $_GET['totalHospitalBeds'];
 
 //echo var_dump($_GET);
 
-// set response code - 200 OK
+
+
+//if data is received set response code
  http_response_code(200);
 
 //$estimate->estimates = (array) $estimate->covid19ImpactEstimator($estimate);
@@ -185,8 +191,53 @@ $estimate->totalHospitalBeds = $_GET['totalHospitalBeds'];
  echo $json;
 
 
-//$jsonData = json_encode($data);
-//echo $jsonData;
+ /*
+ $apiCallInfo = array(
+ "a" => $_SERVER['PHP_SELF'],
+ "b" => $_SERVER['REQUEST_METHOD'],
+ "c" => $_SERVER['REDIRECT_STATUS'],
+ "d" => $_SERVER['REMOTE_ADDRESS'],
+ "e" => $_SERVER['REQUEST_TIME'],
+ "f" => $_SERVER['USER_AGENT'],
+ "g" => $_SERVER['REQUEST_TIME_FLOAT'],
+ "h" => $_SERVER['CONTENT_LENGTH']
+);
+ /*End Log requests*/
+
+ //set the log date
+ $logDate = date('d-m-Y H:i:s');
+
+ //get the http response code
+ $HTTPStatus = http_response_code();
+
+ //calculate the http request/response time
+ $getMicroTime = microtime(true) - $_SERVER['REQUEST_TIME_FLOAT'];
+ $round = round($getMicroTime, 3);
+ $getMinute = (int) $round;
+ $responseTime = $round - $getMinute . " ms";
+
+ //store the log as an array
+ $apiCallDetails = array(
+		 "Time Stamp" => $logDate,
+		 "HTTP Method" => $_SERVER['REQUEST_METHOD'],
+		 "Request URI" => dirname($_SERVER['SCRIPT_NAME']), //hide the file name json.php
+		 //"HTTP Status" => $_SERVER['REDIRECT_STATUS'],
+		 "HTTP Status" => $HTTPStatus,
+		 "Remote Address" => $_SERVER['REMOTE_ADDR'],
+		 "Response Time" => $responseTime
+ 
+);
+
+//convert the array into a string and format each entry per line
+$apiCallToString = implode("\t", $apiCallDetails) ."\n";
+$logAPICall = print_r($apiCallToString, true);
+
+//write the request log to the log file
+$logPath =  $_SERVER['DOCUMENT_ROOT'] . '/covid19estimator/src/api/v1/on-covid-19/logs/requests.txt';
+//$writeToLog = file_put_contents('log.txt', $logAPICall, FILE_APPEND);
+$writeToLog = file_put_contents($logPath, $logAPICall, FILE_APPEND);
+
+
 }
 
 else{

@@ -14,13 +14,13 @@ public $population;
 public $totalHospitalBeds;
 
 //estimators
-public $currentlyInfected;
-public $infectionsByRequestedTime;
-public $severeCasesByRequestedTime;
-public $hospitalBedsByRequestedTime;
-public $casesForICUByRequestedTime;
-public $casesForVentilatorsByRequestedTime;
-public $dollarsInFlight;
+protected $currentlyInfected;
+protected $infectionsByRequestedTime;
+protected $severeCasesByRequestedTime;
+protected $hospitalBedsByRequestedTime;
+protected $casesForICUByRequestedTime;
+protected $casesForVentilatorsByRequestedTime;
+protected $dollarsInFlight;
 
 
 /************
@@ -153,10 +153,8 @@ return $data = array(
 
 ?>
 
-
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang = "en">
 <head>
 	<meta charset="utf-8">
 	<meta name ="description" content="COVID-19 Estimator for Africa ">
@@ -190,13 +188,14 @@ $estimate->totalHospitalBeds = $_POST['totalHospitalBeds'];
 
 
 	
-	echo"<div class='container alert alert-success alert-dismissible'>";
-	echo "<br><br>";
+echo"<div class='container alert alert-success alert-dismissible'>";
+echo "<br><br>";
 
-	//json_encode($estimate->estimates = (array) $estimate->covid19ImpactEstimator($estimate));
-	  $json = json_encode($estimate->covid19ImpactEstimator($estimate));
-	  echo $json;
-	echo"</div>";
+//json_encode($estimate->estimates = (array) $estimate->covid19ImpactEstimator($estimate));
+  $json = json_encode($estimate->covid19ImpactEstimator($estimate));
+  echo $json;
+echo"</div>";
+
 
 
 
@@ -214,7 +213,7 @@ $estimate->totalHospitalBeds = $_POST['totalHospitalBeds'];
 	<header>
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
     <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="estimator.php">Covid-19 Estimator</a>
+      <a class="navbar-brand js-scroll-trigger" href="estimator_gui.php">Covid-19 Estimator</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -323,10 +322,8 @@ $estimate->totalHospitalBeds = $_POST['totalHospitalBeds'];
 
 
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-    
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
   <script>
         // Self-executing function
@@ -334,9 +331,9 @@ $estimate->totalHospitalBeds = $_POST['totalHospitalBeds'];
             'use strict';
             window.addEventListener('load', function() {
                 // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                var forms = document.getElementsByClassName('data-covid-19-estimator');
+                let forms = document.getElementsByClassName('data-covid-19-estimator');
                 // Loop over them and prevent submission
-                var validation = Array.prototype.filter.call(forms, function(form) {
+                let validation = Array.prototype.filter.call(forms, function(form) {
                     form.addEventListener('submit', function(event) {
                         if (form.checkValidity() === false) {
                             event.preventDefault();
@@ -350,11 +347,5 @@ $estimate->totalHospitalBeds = $_POST['totalHospitalBeds'];
     </script>
 
 
-
 </body>
 </html>
-
-
-
-
-

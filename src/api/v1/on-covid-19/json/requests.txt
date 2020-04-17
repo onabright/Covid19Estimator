@@ -1,0 +1,4 @@
+17-04-2020 01:58:33	GET	/c19/src/api/v1/on-covid-19/json	200	::1	0.014 ms
+17-04-2020 02:39:43	GET	/covid19estimator/src/api/v1/on-covid-19/json	200	41.202.241.10	0.011 ms
+17-04-2020 02:55:43	GET	/covid19estimator/src/api/v1/on-covid-19/xml	200	41.202.241.10	0.003 ms
+17-04-2020 02:55:57	GET	/covid19estimator/src/api/v1/on-covid-19/xml	200	41.202.241.10	0.006 ms
